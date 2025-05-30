@@ -1,0 +1,78 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Proxima+Nova:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 252 253 255;
+    --foreground: 71 85 105;
+
+    --card: 255 255 255;
+    --card-foreground: 71 85 105;
+
+    --popover: 255 255 255;
+    --popover-foreground: 71 85 105;
+
+    --primary: 163 116 255;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 243 237 255;
+    --secondary-foreground: 86 33 184;
+
+    --muted: 248 250 252;
+    --muted-foreground: 148 163 184;
+
+    --accent: 243 237 255;
+    --accent-foreground: 86 33 184;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 163 116 255;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 252 253 255;
+    --sidebar-foreground: 71 85 105;
+    --sidebar-primary: 163 116 255;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 248 250 252;
+    --sidebar-accent-foreground: 71 85 105;
+    --sidebar-border: 226 232 240;
+    --sidebar-ring: 163 116 255;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-proxima font-light;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/20 backdrop-blur-md border border-white/30 shadow-lg;
+  }
+  
+  .neuro-button {
+    @apply bg-gradient-to-br from-purple-100 to-purple-200 
+           shadow-[inset_2px_2px_5px_rgba(255,255,255,0.7),inset_-2px_-2px_5px_rgba(163,116,255,0.1),2px_2px_8px_rgba(163,116,255,0.2)]
+           border border-purple-200/50
+           transition-all duration-300 ease-in-out
+           hover:shadow-[inset_1px_1px_3px_rgba(255,255,255,0.8),inset_-1px_-1px_3px_rgba(163,116,255,0.15),0_0_20px_rgba(163,116,255,0.4)]
+           hover:scale-[1.02]
+           active:scale-[0.98];
+  }
+  
+  .menu-overlay {
+    @apply fixed inset-0 bg-black/20 backdrop-blur-sm z-40;
+  }
+}
