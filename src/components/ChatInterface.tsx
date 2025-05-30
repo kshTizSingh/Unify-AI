@@ -34,10 +34,16 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
   const [selectedModel, setSelectedModel] = useState('Gemini Pro');
   const [isLoading, setIsLoading] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const [newestMessageId, setNewestMessageId] = useState<string | null>(null);
   
   const availableModels = ['GPT-3.5 Turbo', 'GPT-4', 'Gemini Pro', 'Claude-3', 'Llama-2'];
   const hasMessages = messages.length > 0;
+
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   // Load messages from localStorage on component mount
   useEffect(() => {
@@ -283,6 +289,8 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
                 </div>
               </div>
             )}
+            {/* Auto-scroll anchor */}
+            <div ref={messagesEndRef} />
           </div>
         )}
       </div>

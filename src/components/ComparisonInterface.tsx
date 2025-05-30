@@ -28,6 +28,7 @@ const ComparisonInterface: React.FC<ComparisonInterfaceProps> = ({ initialCompar
   const [isLoading, setIsLoading] = useState(false);
   const [selectedTool, setSelectedTool] = useState('chat');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const resultsEndRef = useRef<HTMLDivElement>(null);
   const [newestResponseIds, setNewestResponseIds] = useState<Set<string>>(new Set());
 
   const availableModels = ['GPT-3.5 Turbo', 'GPT-4', 'Gemini Pro', 'Claude-3', 'Llama-2'];
@@ -151,6 +152,13 @@ const ComparisonInterface: React.FC<ComparisonInterfaceProps> = ({ initialCompar
       }, 1000);
     }
   }, [initialComparison]);
+
+  // Auto-scroll to bottom when responses change
+  useEffect(() => {
+    if (responses.length > 0) {
+      resultsEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [responses]);
 
   const addModel = () => {
     if (selectedModels.length < 4) {
@@ -369,6 +377,8 @@ const ComparisonInterface: React.FC<ComparisonInterfaceProps> = ({ initialCompar
                 )}
               </div>
             ))}
+            {/* Auto-scroll anchor */}
+            <div ref={resultsEndRef} />
           </div>
         )}
       </div>

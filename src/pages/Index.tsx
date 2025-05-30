@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
@@ -18,8 +17,8 @@ const Index: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-100 flex w-full relative">
-      {/* Desktop Sidebar */}
+    <div className="h-screen bg-gradient-to-br from-purple-50 via-white to-purple-100 flex w-full relative overflow-hidden">
+      {/* Desktop Sidebar - Fixed */}
       <div className="hidden lg:block">
         <Sidebar />
       </div>
@@ -27,8 +26,8 @@ const Index: React.FC = () => {
       {/* Mobile Menu */}
       <MobileMenu isOpen={isMobileMenuOpen} onToggle={toggleMobileMenu} />
 
-      {/* Main Content */}
-      <div className="flex-1 lg:ml-0">
+      {/* Main Content - Takes remaining space and has its own scroll */}
+      <div className="flex-1 lg:ml-0 h-full overflow-hidden">
         <Routes>
           <Route path="/" element={<Navigate to="/chat" replace />} />
           <Route path="/chat" element={<Chat />} />

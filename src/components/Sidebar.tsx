@@ -30,8 +30,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
   return (
     <>
       <div className={`
-        fixed left-0 top-0 h-full w-64 bg-gradient-to-b from-purple-50/90 to-white/90 
+        fixed left-0 top-0 h-screen w-64 bg-gradient-to-b from-purple-50/90 to-white/90 
         backdrop-blur-xl border-r border-purple-200/50 z-30 transition-transform duration-300
+        overflow-y-auto
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         lg:translate-x-0 lg:static lg:z-auto
       `}>
